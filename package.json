@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/cbattersby87/HappyHealthyVegan/issues"
   },
-  "homepage": "https://github.com/cbattersby87/HappyHealthyVegan#readme"
+  "homepage": "https://github.com/cbattersby87/HappyHealthyVegan#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
 }
