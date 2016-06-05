@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#recipe-submit').click(function () {
+                var payload = {
+                    title: $('#recipe-title').val(),
+                    description: $('#recipe-description').val()
+                };
+                $.ajax({
+                    url: "/recipe-info",
+                    type: "POST",
+                    contentType: "application/json",
+                    processData: false,
+                    data: JSON.stringify(payload),
+                    complete: function (data) {
+                        $('#output').html(data.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <h3>Enter a recipe to enter into the database:</h3>
+    <input id="recipe-title" type="text" />
+    <input id="recipe-description" type="text" />
+    <input id="recipe-submit" type="submit" />
+    <p id="output"></p>
+    
+    <!--<section class="get">
+    <h3>Get Data</h3>
+    <a href="/get-data">LOAD DATA</a>
+    <div>
+        {{# each items }}
+            <article class="item">
+                <div>Title: {{ this.title }}</div>
+                <div>Author: {{ this.description }}</div>
+                <div>ID: {{ this._id }}</div>
+            </article>
+        {{/each}}
+    </div>
+</section>-->
+  </body>
+</html>
+
