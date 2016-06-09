@@ -1,16 +1,14 @@
 var express = require('express');
 var mysql = require('mysql');
-var router = express.Router();
-var bodyParser = require('body-parser');
+
+var app = express();
 
 var connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
-    password: 'password123'
+    password: 'password123',
+    database: 'chars_recipes'
 });
-
-var app = express();
-app.use(bodyParser.json());
 
 connection.connect(function (err) {
     if (err) throw err
@@ -31,17 +29,29 @@ connection.query('CREATE DATABASE IF NOT EXISTS chars_recipes', function (err) {
     });
 });
 
-app.post('/recipe_info', function (req, res) {
-    connection.query('INSERT INTO recipe_info VALUES (?, ?)', req.body,
-        function (err, result) {
-            if (err) throw err;
-            res.send('Recipe added to databse with ID: ' + result.insertId);
-        }
-    );
-});
+
+
+// app.post('/recipe_info', function (req, res) {
+//     connection.query('INSERT INTO recipe_info VALUES (?, ?)', req.body,
+//         function (err, result) {
+//             if (err) throw err;
+//             res.send('Recipe added to databse with ID: ' + result.insertId);
+//         }
+//     );
+// });
+
+// app.get('/', function (req, res) {
+//     res.sendFile(__dirname + '/index.html');
+// });
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+
+    connection.query('SELECT * FROM chars_recipes.recipe_info', function (err, rows) {
+        if (err) throw err;
+
+        console.log('Data received from Db:\n');
+        res.send(rows);
+    });
 });
 
 app.listen(3000, function () {
@@ -61,4 +71,3 @@ app.listen(3000, function () {
 //     });
 // });
 
-module.exports = router;
