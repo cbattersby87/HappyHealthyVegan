@@ -1,4 +1,4 @@
-# HappyHealthyVegan
+# Happy Healthy Vegan
 a small website full of Vegan Recipes
 
 Technologies Used:
