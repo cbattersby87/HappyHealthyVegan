@@ -3,39 +3,47 @@ var mysql = require('mysql');
 
 var app = express();
 
-var connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'password123',
-    database: 'chars_recipes'
-});
+app.use(express.static('public'));
+app.set('views', './src/views');
+app.set('view engine', 'jade');
 
-connection.connect(function (err) {
-    if (err) throw err
-    console.log('You are now connected...');
-});
+// var connection = mysql.createConnection({
+//     host: '127.0.0.1',
+//     user: 'root',
+//     password: 'password123',
+//     database: 'chars_recipes'
+// });
 
-connection.query('CREATE DATABASE IF NOT EXISTS chars_recipes', function (err) {
-    if (err) throw err;
-    connection.query('USE chars_recipes', function (err) {
-        if (err) throw err;
-        connection.query('CREATE TABLE IF NOT EXISTS recipe_info('
-            + 'recipe_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,'
-            + 'title varchar(255),'
-            + 'description text'
-            + ')', function (err) {
-                if (err) throw err;
-            });
-    });
-});
+// connection.connect(function (err) {
+//     if (err) throw err
+//     console.log('You are now connected...');
+// });
+
+// connection.query('CREATE DATABASE IF NOT EXISTS chars_recipes', function (err) {
+//     if (err) throw err;
+//     connection.query('USE chars_recipes', function (err) {
+//         if (err) throw err;
+//         connection.query('CREATE TABLE IF NOT EXISTS recipe_info('
+//             + 'recipe_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,'
+//             + 'title varchar(255),'
+//             + 'description text'
+//             + ')', function (err) {
+//                 if (err) throw err;
+//             });
+//     });
+// });
 
 app.get('/', function (req, res) {
 
-    connection.query('SELECT * FROM chars_recipes.recipe_info', function (err, rows) {
-        if (err) throw err;
+res.render('index');
 
-        res.send(rows);
-    });
+
+
+    // connection.query('SELECT * FROM chars_recipes.recipe_info', function (err, rows) {
+    //     if (err) throw err;
+
+    //     res.send(rows);
+    // });
 });
 
 app.listen(3000, function () {
