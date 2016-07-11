@@ -46,6 +46,11 @@ app.get('/', function (req, res) {
     // });
 });
 
+
+app.get('/addRecipe', function (req, res) {
+    res.render('addRecipe');
+});
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

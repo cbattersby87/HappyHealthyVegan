@@ -1,0 +1,134 @@
+doctype html
+html(lang='en')
+  head
+    meta(http-equiv='content-type', content='text/html; charset=UTF-8')
+    meta(charset='utf-8')
+    title Happy Healthy Vegan
+    meta(name='generator', content='Bootply')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    link(rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css")
+    link(href='css/bootstrap.min.css', rel='stylesheet')
+    //if lt IE 9
+      script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
+    link(href='css/styles.css', rel='stylesheet')
+    link(rel='stylesheet', href='css/font-awesome/css/font-awesome.min.css')
+  body(ng-app='myApp')
+    .wrapper
+      .box
+        .row(ng-controller='mainController')
+          // sidebar
+          #sidebar.column.col-sm-3
+            a.logo(href='/')
+              i.fa.fa-envira(aria-hidden='true')
+            ul.nav
+              li.active
+                a(href='/addRecipe') Add Recipe
+            ul#sidebar-footer.nav.hidden-xs
+              li
+                h3 Welcome to {{title}}
+          // /sidebar
+          // main
+          #main.column.col-sm-9
+            .padding
+              .full.col-sm-9
+                // content
+                #featured.col-sm-12
+                  .page-header.text-muted
+                    | Add Recipes
+                // /add recipes
+              div(ng-controller='recipeController as ctrl')
+                .row
+                    a(href='#' style='margin-left:15px;')
+                      img.img-respsonsive.img-circle(src='../img/apple-icon.jpg')
+                    form.pure-form.pure-form-stacked(style='margin-left:15px;')
+                      fieldset
+                        legend Add a New Recipe
+                        .pure-g
+                          .pure-u-1.pure-u-md-1-3
+                            label(for='name') Name
+                            input#name.pure-u-23-24(type='text' required placeholder='Enter a name' ng-model='ctrl.newData.name')
+                          .pure-u-1.pure-u-md-1-3
+                            label(for='description') Description
+                            input#description.pure-u-23-24(type='text' required placeholder='Enter a description' ng-model='ctrl.newData.description')
+                          .pure-u-1.pure-u-md-1-3
+                            label(for='cateagory') Category
+                            select#category.pure-input-1-2(ng-model='ctrl.newData.category' required)
+                              option Breakfast
+                              option Lunch
+                              option Dinner
+                        button.pure-button.pure-button-primary(ng-click='ctrl.addEntry()') Add a new Recipe
+                #stories.col-sm-12
+                  
+                // /search
+                .row
+                form.pure-form.pure-form-stacked
+                  fieldset(style='margin-bottom: -50px;')
+                    .page-header.text-muted.divider 
+                      .pure-g
+                        .pure-u-1.pure-u-md-1-3
+                          label(for='search-all') Search(All fields):
+                          input#search-all.pure-u-23-24(type='text', ng-model='ctrl.search.$')
+                        .pure-u-1.pure-u-md-1-3
+                          label(for='search-category') Search(Category only): 
+                          input#search-category.pure-u-23-24(type='text', ng-model='ctrl.search.category')
+                        .pure-u-1.pure-u-md-1-3
+                          label(for='search-name') Search(Name only): 
+                          input#search-name.pure-u-23-24(type='email', ng-model='ctrl.search.name')
+                        .pure-u-1.pure-u-md-1-3
+                          label(for='search-description') Search(Description only): 
+                          input#search-description.pure-u-23-24(type='text', ng-model='ctrl.search.description')
+                  .page-header.text-muted.divider Past Recipes
+                  table
+                    thead
+                        tr
+                          th
+                            a(href='', ng-click="ctrl.sort('category')") Category
+                          th
+                            a(href='', ng-click="ctrl.sort('name')") Name
+                          th
+                            a(href='', ng-click="ctrl.sort('description')") Description
+                    tbody
+                      tr(ng-repeat="entry in ctrl.collection | filter:ctrl.search:ctrl.strict | orderBy:ctrl.sortProperty:ctrl.reverseSort")
+                        td {{entry.category}}
+                        td {{entry.name}}
+                        td {{entry.description}}
+                //- .col-sm-12
+                //-   .page-header.text-muted.divider
+                //-     | Up Next
+                //- .row
+                //-   .col-sm-4.text-center
+                //-     h4 Related 1
+                //-     a(href='#')
+                //-       img.img-respsonsive.img-circle(src='//placehold.it/400/f0f0f0')
+                //-   .col-sm-4.text-center
+                //-     h4 Related 2
+                //-     a(href='#')
+                //-       img.img-respsonsive.img-circle(src='//placehold.it/400/f0f0f0')
+                //-   .col-sm-4.text-center
+                //-     h4 Related 3
+                //-     a(href='#')
+                //-       img.img-respsonsive.img-circle(src='//placehold.it/400/f0f0f0')
+                //- .col-sm-12
+                //-   .page-header.text-muted.divider
+                //-     | Connect with Me
+                //- .row
+                //-   .col-sm-6
+                //-     a(href='#') Twitter
+                //-     small.text-muted |
+                //-     a(href='#') Facebook
+                //-     small.text-muted |
+                //-     a(href='#') Google+
+                //- hr
+                //- #footer.row
+                //-   .col-sm-6
+              // /col-9
+            // /padding
+          // /main
+    // script references
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
+    script(src='js/bootstrap.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.min.js')
+    script(src='http://underscorejs.org/underscore-min.js')
+    script(src='js/script.js')
+    script(src='js/addRecipe.js')

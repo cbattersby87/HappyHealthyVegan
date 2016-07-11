@@ -3,7 +3,7 @@ html(lang='en')
   head
     meta(http-equiv='content-type', content='text/html; charset=UTF-8')
     meta(charset='utf-8')
-    title Basis Template for Bootstrap 3
+    title Happy Healthy Vegan
     meta(name='generator', content='Bootply')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
     link(href='css/bootstrap.min.css', rel='stylesheet')
@@ -11,22 +11,20 @@ html(lang='en')
       script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
     link(href='css/styles.css', rel='stylesheet')
     link(rel='stylesheet', href='css/font-awesome/css/font-awesome.min.css')
-  body
+  body(ng-app='myApp')
     .wrapper
       .box
         .row
           // sidebar
-          #sidebar.column.col-sm-3
+          #sidebar.column.col-sm-3(ng-controller='mainController')
             a.logo(href='#')
               i.fa.fa-envira(aria-hidden='true')
             ul.nav
               li.active
-                a(href='#featured') Featured
-              li
-                a(href='#stories') Stories
+                a(href='/addRecipe') Add Recipe
             ul#sidebar-footer.nav.hidden-xs
               li
-                h3 Welcome {{Happy Healthy Vegan}}
+                h3 Welcome to {{title}}
           // /sidebar
           // main
           #main.column.col-sm-9
@@ -167,3 +165,6 @@ html(lang='en')
     // script references
     script(src='//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js')
     script(src='js/bootstrap.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.min.js')
+    script(src='js/script.js')

@@ -4,7 +4,7 @@
   "description": "a small website full of Vegan Recipes",
   "main": "index.js",
   "scripts": {
-     "test": "mocha"
+     "test": "node_modules/mocha/bin/mocha"
   },
   "repository": {
     "type": "git",
